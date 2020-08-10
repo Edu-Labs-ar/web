@@ -1,0 +1,9 @@
+<ng-template #sectionTemplate>
+  <edu-panel *ngIf="title">
+    <ng-content></ng-content>
+  </edu-panel>
+    
+  <ng-container [ngTemplateOutlet]="content"></ng-container>
+  
+</ng-template>
+

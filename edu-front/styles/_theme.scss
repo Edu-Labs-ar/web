@@ -1,0 +1,49 @@
+@import "custom";
+
+@function get-color($theme, $palette, $hue) {
+  @return mat-color(map-get($theme, $palette), $hue);
+}
+
+@mixin theme-invariants($theme) {
+  $colors: primary, accent;
+  $variants: lighter, darker;
+
+  // Defino atajos para las variantes más usadas
+  @each $color in $colors {
+    .mat-#{$color} { color: get-color($theme, $color, default) }
+    @each $hue in $variants {
+      .mat-#{$color}-#{$hue} { color: get-color($theme, $color, $hue)}
+      .mat-#{$color}-#{$hue}-h:hover { color: get-color($theme, $color, $hue)}
+      .mat-bg-#{$color}-#{$hue} { background-color: get-color($theme, $color, $hue); color: get-color($theme, $color, #{$hue}-contrast)}
+    }
+  }
+
+  .mat-warn.mat-warn { color: get-color($theme, warn, default) }
+
+  .mat-form-field.mat-accent.mat-focused {
+    .mat-form-field-label {
+      color: get-color($theme, accent, default);
+    }
+
+    .mat-form-field-ripple {
+      background-color: get-color($theme, accent, default);
+    }
+  }
+
+  @include custom-invariants($theme);
+}
+
+@mixin custom-theme($theme, $dark: false) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  // Defino atajos para las variantes más usadas
+  .mat-background { background-color: mat-color($background, background) }
+  .mat-background-higher { background-color: mat-color($background, card) }
+  .mat-background-lower { background-color: mat-color($background, disabled-button) }
+  .mat-foreground { color: mat-color($foreground, text) }
+  .mat-foreground-higher { color: mat-color($foreground, base) }
+  .mat-foreground-lower { color: mat-color($foreground, disabled-text) }
+
+  div { color: mat-color($foreground, text) }
+}

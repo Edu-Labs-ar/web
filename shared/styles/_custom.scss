@@ -1,0 +1,24 @@
+.edu-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.edu-navbar {
+  min-width: 64px;
+}
+
+.edu-content {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.edu-absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.clickable {
+  cursor: pointer;
+}

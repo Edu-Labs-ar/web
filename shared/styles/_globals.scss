@@ -1,0 +1,7 @@
+@import "base";
+@import "custom";
+@import "palette";
+
+$primary: map_merge($color-primary, $palette-primary);
+$accent:  map_merge($color-accent,  $palette-accent);
+$warn:    map_merge($color-warn,    $palette-warn);

@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <div class="d-flex container h-100 py-2 align-items-center">
+    <img src="assets/logo/Dark.svg" *ngIf="!isDark; else lightLogo" class="clickable" routerLink="">
+    <ng-template #lightLogo>
+      <img src="assets/logo/Light.svg" class="clickable" routerLink="">
+    </ng-template>
+    <span class="flex-grow-1"></span>
+    <button mat-button routerLink="" class="mat-accent-darker edu-big">Inicio</button>
+    <button mat-button routerLink="/forms" class="edu-big">Encuestas</button>
+    <button mat-button routerLink="/contact" class="edu-big">Contacto</button>
+    <mat-divider vertical class="mr-2"></mat-divider>
+    <mat-slide-toggle disableRipple (change)="nightModeToggle()">
+      <edu-icon prefix="fas" icon="moon" class="ml-1" *ngIf="isDark; else dayLight"></edu-icon>
+      <ng-template #dayLight>
+        <edu-icon prefix="far" icon="sun" class="ml-1"></edu-icon>
+      </ng-template>
+    </mat-slide-toggle>
+  </div>
+</mat-toolbar>

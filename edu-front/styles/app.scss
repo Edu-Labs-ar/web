@@ -1,0 +1,20 @@
+@import "../../shared/styles/globals";
+@import '~@angular/material/theming';
+@import "theme";
+@import "custom";
+
+$default-theme: mat-light-theme($primary, $accent, $warn);
+$dark-theme: mat-dark-theme($primary, $accent, $warn);
+
+@mixin create-theme($theme, $dark: false) {
+  @include angular-material-theme($theme);
+  @include custom-theme($theme, $dark);
+  @include custom-variants($theme, $dark)
+}
+
+@include mat-core();
+
+@include create-theme($default-theme);
+.dark { @include create-theme($dark-theme, $dark: true) }
+
+@include theme-invariants($default-theme);

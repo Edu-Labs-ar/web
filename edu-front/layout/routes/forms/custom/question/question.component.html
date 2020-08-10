@@ -1,0 +1,21 @@
+<ng-container *ngIf="emplace; else panelRef">
+  <ng-container *ngTemplateOutlet="questionRef"></ng-container>
+</ng-container>
+
+<ng-template #panelRef>
+  <edu-panel [ngClass]="{'flex-row': horizontal}">
+    <ng-container *ngTemplateOutlet="questionRef"></ng-container>
+  </edu-panel>
+</ng-template>
+
+<ng-template #questionRef>
+  <div class="edu-vertical" [ngClass]="{'mb-3': description || !horizontal}">
+    <div class="d-flex-inline">
+      <edu-title class="edu-small">{{title}}</edu-title>
+      <span *ngIf="required" class="ml-1 mat-warn">*</span>
+    </div>
+    <edu-description *ngIf="description" class="mt-1 edu-small">{{description}}</edu-description>
+  </div>
+  
+  <ng-content></ng-content>
+</ng-template>

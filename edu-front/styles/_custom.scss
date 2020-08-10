@@ -1,0 +1,72 @@
+// Colores que no varian entre temas
+@mixin custom-invariants($theme) {
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  .edu-panel .stripe {
+    background-color: mat-color($primary, darker)
+  }
+}
+
+// Colores que varian por tema
+@mixin custom-variants($theme, $dark: false) {
+  $background: map-get($theme, background);
+
+  .edu-panel {
+    @if $dark {
+      border-color: #25231f;
+    } @else {
+      border-color: #dadce0;
+    }
+  }
+}
+
+
+// Estilos sin color
+.edu-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-big {
+  font-size: 16px;
+}
+
+.edu-title {
+  font-size: 32px;
+  &.edu-small { font-size: 16px }
+}
+
+.edu-description {
+  font-size: 14px;
+  &.edu-small { font-size: 12px }
+}
+
+.edu-panel {
+  // align-items: center;
+  border: 1px solid;
+  border-radius: 8px;
+
+  .stripe {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    height: 10px;
+    width: calc(100% + 2px);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+}
+
+.edu-container {
+  display: flex;
+  flex-direction: column;
+  margin: 12px auto;
+  padding: 24px;
+  padding-top: 22px;
+  position: relative;
+  max-width: 90vw;
+
+  &:not(.wide) {
+    width: 640px;
+  }
+}
