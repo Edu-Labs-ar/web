@@ -1,0 +1,192 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: circleci/node:10.16.3
+  web-executor:
+    docker:
+      - image: circleci/node:10.16.3
+    working_directory: ~/project/edu-front
+  back-executor:
+    docker:
+      - image: circleci/node:10.16.3
+    working_directory: ~/project/edu-back
+
+jobs:
+  init:
+    executor: default
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
+  
+  
+  # Frontend flow
+  web-install:
+    executor: web-executor
+    steps:
+      - attach_workspace:
+          at: ~/
+      - restore_cache:
+          keys:
+            - front-cache-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - front-cache-v1-{{ .Branch }}
+            - front-cache-v1
+      - run:
+          name: instalar dependencias frontend
+          command: npm install
+      - save_cache:
+          key: front-cache-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/web/node_modules
+    
+  web-build:
+    executor: web-executor
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Compilar frontend
+          command: NODE_ENV=production npm run build
+      - store_artifacts:
+          path: build
+          destination: ~/project/public
+      - run:
+          name: Guardar número de compilación
+          command: |
+            mkdir -p /tmp/builds
+            touch /tmp/builds/$CIRCLE_BUILD_NUM
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - builds
+  
+  
+  # Backend flow
+  # back-install:
+  #   executor: back-executor
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/
+  #     - restore_cache:
+  #         keys:
+  #           - back-cache-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+  #           - back-cache-v1-{{ .Branch }}
+  #           - back-cache-v1
+  #     - run:
+  #         name: instalar dependencias backend
+  #         command: npm install
+  #     - save_cache:
+  #         key: back-cache-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+  #         paths:
+  #           - node_modules
+  #     - persist_to_workspace:
+  #         root: ~/
+  #         paths:
+  #           - project/backend/node_modules
+    
+  # back-test:
+  #   executor: back-executor
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/
+  #     - run:
+  #         name: Correr tests de unidad
+  #         environment:
+  #           JEST_JUNIT_OUTPUT: reports/test-results.xml
+  #         command: npm test -- --passWithNoTests --ci --runInBand --reporters=default --reporters=jest-junit
+  #     - store_test_results:
+  #         path: reports
+
+  # back-build:
+  #   executor: back-executor
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/
+  #     # - run:
+  #     #     name: Compilar backend
+  #     #     command: NODE_ENV=production npm run build
+  #     - store_artifacts:
+  #         path: src/
+  #         destination: ~/project
+  #     - store_artifacts:
+  #         path: package.json
+  #         destination: ~/project/package.json
+  #     - run:
+  #         name: Guardar número de compilación
+  #         command: |
+  #           mkdir -p /tmp/builds
+  #           touch /tmp/builds/$CIRCLE_BUILD_NUM
+  #     - persist_to_workspace:
+  #         root: /tmp
+  #         paths:
+  #           - builds
+
+  
+  deploy-to-testing:
+    machine:
+       enabled: true
+    steps:
+      - attach_workspace:
+          at: ~/
+      # - store_artifacts:
+      #     path: backend/src
+      #     destination: ~/project
+      # - store_artifacts:
+      #     path: backend/package.json
+      #     destination: ~/project/package.json
+      # - attach_workspace:
+      #     at: /tmp/
+      # - run:
+      #     name: Leer números de compilación
+      #     command: BUILDS=$(ls /tmp/builds)
+      - run:
+          name: Deployar a servidor de testing
+          command: ssh $SSH_USER@$SSH_HOST "sudo ./deploy $CIRCLE_BUILD_NUM"
+
+workflows:
+  version: 2
+  install-build-test-deploy:
+    jobs:
+      - init
+      - web-install:
+          requires:
+            - init
+      # - back-install:
+      #     requires:
+      #       - init
+      
+      # - web-lint:
+      #     requires:
+      #       - web-install
+      - web-build:
+          requires:
+            - web-install
+
+      # - back-lint:
+      #     requires:
+      #       - back-install
+      # - back-test:
+      #     requires:
+      #       - back-install
+      # - back-build:
+      #     requires:
+      #       - back-install
+    
+      - deploy-to-testing:
+          requires:
+            # - web-lint
+            - web-build
+            # - back-lint
+            # - back-test
+            # - back-build
+          filters:
+            branches:
+              only: desarrollo

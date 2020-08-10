@@ -19,7 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "../dist/edu-front",
+            "outputPath": "./build",
             "index": "config/index.html",
             "main": "config/main.ts",
             "polyfills": "config/polyfills.ts",
