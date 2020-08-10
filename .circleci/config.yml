@@ -45,7 +45,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/web/node_modules
+            - project/edu-front/node_modules
     
   web-build:
     executor: web-executor
