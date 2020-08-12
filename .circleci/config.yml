@@ -134,22 +134,19 @@ jobs:
     machine:
        enabled: true
     steps:
-      - attach_workspace:
-          at: ~/
+      # - attach_workspace:
+      #     at: ~/
       # - store_artifacts:
       #     path: backend/src
       #     destination: ~/project
       # - store_artifacts:
       #     path: backend/package.json
       #     destination: ~/project/package.json
-      # - attach_workspace:
-      #     at: /tmp/
-      # - run:
-      #     name: Leer números de compilación
-      #     command: BUILDS=$(ls /tmp/builds)
+      - attach_workspace:
+           at: /tmp/
       - run:
           name: Deployar a servidor de testing
-          command: ssh $SSH_USER@$SSH_HOST "sudo ./deploy $CIRCLE_BUILD_NUM"
+          command: ssh $SSH_USER@$SSH_HOST "sudo ./deploy $(ls /tmp/builds)"
 
 workflows:
   version: 2

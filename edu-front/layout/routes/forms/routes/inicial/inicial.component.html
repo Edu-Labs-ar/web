@@ -112,7 +112,7 @@
           description="Por fuera de los típicos apuntes y presentaciones">
           <mat-selection-list>
             <mat-list-option *ngFor="let option of [
-            'Videos', 'Animaciones', 'Realidad Aumentada',
+            'Videos / Animaciones', 'Realidad Aumentada',
             'Programa de preguntas y respuestas en tiempo real',
             'Encuestas fuera de clase (Mediante Software)',
             'No hubieron complementos audiovisuales'];
@@ -213,10 +213,24 @@
         </edu-question>
 
         <edu-question
-          title="¿Alguna de las materias que cursaste adaptó sus trabajos prácticos a la virtualidad? ¿Cómo? La instancia virtual ¿Fué suficiente para alcanzar la regularidad?">
+          title="¿Alguna de las materias que cursaste adaptó sus trabajos prácticos a la virtualidad? ¿Cómo?">
           <mat-form-field class="mat-accent">
             <textarea matInput placeholder="Tu respuesta"></textarea>
           </mat-form-field>
+        </edu-question>
+
+        <edu-question title="La instancia virtual ¿Fué suficiente para alcanzar la regularidad?">
+          <mat-radio-group class="edu-vertical">
+            <mat-radio-button class="mt-2" value="0">Sí</mat-radio-button>
+            <mat-radio-button class="mt-2" value="1">No</mat-radio-button>
+          </mat-radio-group>
+
+          <div class="d-inline-flex flex-row align-items-center">
+            Comentarios:
+            <mat-form-field class="mat-accent ml-2">
+              <input matInput type="text" maxlength="60">
+            </mat-form-field>
+          </div>
         </edu-question>
 
         <edu-question
@@ -277,6 +291,20 @@
         </edu-question>
 
         <edu-question title="¿Jugás videojuegos?">
+          <mat-radio-group class="edu-vertical">
+            <mat-radio-button class="mt-2" value="0">Sí</mat-radio-button>
+            <mat-radio-button class="mt-2" value="1">No</mat-radio-button>
+          </mat-radio-group>
+        </edu-question>
+
+        <edu-question title="¿Usarías un videojuego como herramienta de aprendizaje?">
+          <mat-radio-group class="edu-vertical">
+            <mat-radio-button class="mt-2" value="0">Sí</mat-radio-button>
+            <mat-radio-button class="mt-2" value="1">No</mat-radio-button>
+          </mat-radio-group>
+        </edu-question>
+
+        <edu-question title="¿Usarías un simulador como herramienta de aprendizaje?">
           <mat-radio-group class="edu-vertical">
             <mat-radio-button class="mt-2" value="0">Sí</mat-radio-button>
             <mat-radio-button class="mt-2" value="1">No</mat-radio-button>
