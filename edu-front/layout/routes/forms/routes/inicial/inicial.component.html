@@ -6,16 +6,17 @@
       herramientas para complementar el aprendizaje de los estudiantes de nuestra facultad.
       <br>
       Esta encuesta tiene como objetivo conocer la experiencia de los estudiantes a lo largo de la carrera, a fines de
-      identificar qué aspectos es necesario mejorar en la misma, respecto de las herramientas utilizadas actualmente de
-      nuestra formación.
+      identificar qué aspectos de las herramientas utilizadas actualmente de nuestra formación son necesarios mejorar.
       <br>
-      No recaudaremos datos personales, entiéndase por esto datos que permitan identificar al encuestado.
+      No te pediremos datos personales que permitan tu identificación.
       <br>
       La encuesta es voluntaria, la participación en la misma no presenta ningún riesgo, no representa un motivo de
-      resarcimiento para los participantes y no afectará el cursado de la carrera.
+      resarcimiento y no afectará el cursado de la carrera.
       <br>
       Completar y enviar la encuesta significará aceptar, bajo consentimiento informado, la participación en este
-      estudio
+      estudio.
+      <br>
+      Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar
     </div>
     <div class="mat-warn mt-3">* Obligatorio</div>
   </edu-panel>
@@ -55,7 +56,8 @@
               <mat-radio-button value="3">
                 Otra:
                 <mat-form-field class="mat-accent">
-                  <input matInput type="text" maxlength="60" formControlName="generoLibre" (keydown)="demograficos.genero.setValue('3')">
+                  <input matInput type="text" maxlength="60" formControlName="generoLibre"
+                    (keydown)="demograficos.genero.setValue('3')">
                 </mat-form-field>
               </mat-radio-button>
             </mat-radio-group>
@@ -77,7 +79,8 @@
               <mat-radio-button value="3">
                 Otra:
                 <mat-form-field class="mat-accent">
-                  <input matInput type="text" maxlength="60" formControlName="nombreCarreraLibre" (keydown)="academicos.carrera.setValue('3')">
+                  <input matInput type="text" maxlength="60" formControlName="nombreCarreraLibre"
+                    (keydown)="academicos.carrera.setValue('3')">
                 </mat-form-field>
               </mat-radio-button>
             </mat-radio-group>
@@ -87,7 +90,8 @@
             <mat-slider min="0" max="5" step="1" tickInterval="1" thumbLabel formControlName="año"></mat-slider>
           </edu-question>
 
-          <edu-question title="¿Cursaste alguna de estas materias de manera PRESENCIAL?" *ngIf="lastAssignatures?.length > 0">
+          <edu-question title="¿Cursaste alguna de estas materias de manera PRESENCIAL?"
+            *ngIf="lastAssignatures?.length > 0">
             <mat-selection-list formControlName="presenciales">
               <mat-list-option *ngFor="let assignature of lastAssignatures; let i = index" value="{{i}}"
                 checkboxPosition='before'>
@@ -292,14 +296,14 @@
         </edu-question>
       </ng-template>
     </edu-section>
-    
+
     <ng-container [ngTemplateOutlet]="sectionTemplate"></ng-container>
 
     <div class="edu-container flex-row px-0">
       <button mat-raised-button class="mr-3 px-4" *ngIf="hasPrevSection" (click)="prevSection()">
         Anterior
       </button>
-  
+
       <button mat-raised-button class="px-4" *ngIf="hasNextSection; else sendButton" (click)="nextSection()">
         Siguiente
       </button>
