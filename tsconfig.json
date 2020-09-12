@@ -8,7 +8,10 @@
   "files": [],
   "references": [
     {
-      "path": "./edu-front/config/tsconfig.json"
+      "path": "./client/config/tsconfig.json"
+    },
+    {
+      "path": "./edu-back/config/tsconfig.json"
     }
 ]
 }

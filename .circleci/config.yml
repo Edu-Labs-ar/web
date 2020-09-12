@@ -7,7 +7,7 @@ executors:
   web-executor:
     docker:
       - image: circleci/node:10.16.3
-    working_directory: ~/project/edu-front
+    working_directory: ~/project/client
   back-executor:
     docker:
       - image: circleci/node:10.16.3
@@ -45,7 +45,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/edu-front/node_modules
+            - project/client/node_modules
     
   web-build:
     executor: web-executor

@@ -1,11 +1,10 @@
 {
   "name": "edulabs-web",
   "version": "0.1.0",
-  "private": true,
   "description": "Sitio web de Edulabs.",
   "scripts": {
-    "build": "pushd edu-front & npm run build & popd",
-    "lint": "pushd edu-front & npm run lint & popd"
+    "build": "pushd client & npm run build & popd & pushd edu-back & npm run build & popd",
+    "lint": "pushd client & npm run lint & popd & pushd edu-back & npm run lint & popd"
   },
   "contributors": [
     {

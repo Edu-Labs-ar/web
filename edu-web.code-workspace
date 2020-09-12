@@ -5,6 +5,7 @@
 		}
 	],
 	"settings": {
-		"explorer.autoReveal": false
+		"explorer.autoReveal": false,
+		"debug.node.autoAttach": "on"
 	}
 }
