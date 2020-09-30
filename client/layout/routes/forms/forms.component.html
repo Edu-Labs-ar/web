@@ -3,10 +3,18 @@
 <div class="edu-vertical">
   <edu-panel stripe>
     <edu-title class="mt-3">{{structure.title}}</edu-title>
-    <div class="mt-3">
+    <div class="mt-3" *ngIf="structure.description">
       {{structure.description}}
     </div>
     <div class="mat-warn mt-3">* Obligatorio</div>
   </edu-panel>
+
+  <edu-section *ngFor="let section of structure.sections; let idx = index" key="{{idx}}">
+    <edu-title> {{section.title}} </edu-title>
+    <edu-description *ngIf="section.description"> {{section.description}} </edu-description>
+    <ng-template>
+
+    </ng-template>
+  </edu-section>
 
 </div>

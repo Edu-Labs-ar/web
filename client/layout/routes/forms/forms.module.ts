@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsComponent } from './forms.component';
 import { PanelModule, TitleModule } from 'client/layout/custom';
 import { FormsService } from 'client/services';
+import { SectionModule } from './custom';
 
 const routes: Routes = [
   { path: '', component: FormsComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
     CommonModule,
     PanelModule,
     TitleModule,
+    SectionModule,
     RouterModule.forChild(routes)
   ],
   providers: [ FormsService ],
