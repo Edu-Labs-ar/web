@@ -22,7 +22,7 @@ export interface NumberData {
 }
 
 export type ButtonsData = Selection;
-export type QuestionData = SlideData | OptionsData | MultipleChoiceData | ButtonsData;
+export type QuestionData = SlideData | OptionsData | MultipleChoiceData | ButtonsData | NumberData;
 
 export interface Question {
   title: string;
@@ -30,8 +30,8 @@ export interface Question {
   tags?: string[];
   dependencies?: string[];
   required: boolean;
-  type: 'long text' | 'short text' | 'slide' | 'options' | 'multiple choice' | 'buttons';
-  data?: QuestionData[];
-  dependentData?: { [key: string]: QuestionData[] };
+  type: 'long text' | 'short text' | 'slide' | 'options' | 'multiple choice' | 'buttons' | 'numeric';
+  data?: QuestionData;
+  dependentData?: { [key: string]: QuestionData };
 }
 
