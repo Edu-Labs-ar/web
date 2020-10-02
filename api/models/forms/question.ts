@@ -21,8 +21,16 @@ export interface NumberData {
   max: number;
 }
 
-export type ButtonsData = Selection;
-export type QuestionData = SlideData | OptionsData | MultipleChoiceData | ButtonsData | NumberData;
+export interface ButtonsData extends Selection {
+  inline: boolean;
+}
+
+export interface MultiButtonData {
+  header: string;
+  buttons: string[];
+}
+
+export type QuestionData = SlideData | OptionsData | MultipleChoiceData | ButtonsData | NumberData | MultiButtonData[];
 
 export interface Question {
   title: string;
@@ -30,7 +38,7 @@ export interface Question {
   tags?: string[];
   dependencies?: string[];
   required: boolean;
-  type: 'long text' | 'short text' | 'slide' | 'options' | 'multiple choice' | 'buttons' | 'numeric';
+  type: 'long text' | 'short text' | 'slide' | 'options' | 'multiple choice' | 'buttons' | 'multi button' | 'numeric';
   data?: QuestionData;
   dependentData?: { [key: string]: QuestionData };
 }
