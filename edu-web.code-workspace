@@ -6,6 +6,6 @@
 	],
 	"settings": {
 		"explorer.autoReveal": false,
-		"debug.node.autoAttach": "on"
+		"debug.node.autoAttach": "off"
 	}
 }

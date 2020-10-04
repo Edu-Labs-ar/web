@@ -7,6 +7,7 @@ import { FormsService } from 'client/services';
 import { QuestionModule, SectionModule } from './custom';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   { path: '', component: FormsComponent },
@@ -18,11 +19,14 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
+
     PanelModule,
     TitleModule,
-    QuestionModule,
     SectionModule,
-    MatInputModule
+    QuestionModule,
+
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [ FormsService ],
   declarations: [FormsComponent]

@@ -10,6 +10,10 @@ export interface Selection {
   options: string[];
 }
 
+export interface Fillable {
+  placeholder?: string;
+}
+
 export interface OptionsData extends Selection {
   others?: boolean;
 }
@@ -18,7 +22,7 @@ export interface MultipleChoiceData extends Selection {
   others?: boolean;
 }
 
-export interface NumberData {
+export interface NumberData extends Fillable {
   min?: number;
   max?: number;
   step?: number;

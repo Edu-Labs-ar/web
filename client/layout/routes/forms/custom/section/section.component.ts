@@ -9,7 +9,7 @@ export class SectionComponent {
 
   @ContentChild(TitleComponent) title: TitleComponent;
   @ContentChild(DescriptionComponent) description: DescriptionComponent;
-  @ContentChild(TemplateRef) content: TemplateRef<any>;
+  @ContentChild('contentTemplate') content: TemplateRef<any>;
 
   @ViewChild('sectionTemplate') sectionTemplate: TemplateRef<any>;
 
