@@ -1,3 +1,5 @@
+import { Taggable } from 'api/utils';
+
 export interface SlideData {
   tags: string[];
   tooltip: boolean;
@@ -32,11 +34,9 @@ export interface MultiButtonData {
 
 export type QuestionData = SlideData | OptionsData | MultipleChoiceData | ButtonsData | NumberData | MultiButtonData[];
 
-export interface Question {
+export interface Question extends Taggable {
   title: string;
   description?: string;
-  tags?: string[];
-  dependencies?: string[];
   required: boolean;
   type: 'long text' | 'short text' | 'slide' | 'options' | 'multiple choice' | 'buttons' | 'multi button' | 'numeric';
   data?: QuestionData;

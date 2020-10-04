@@ -1,9 +1,8 @@
+import { Taggable } from 'api/utils';
 import { Question } from './question';
 
-export interface Section {
+export interface Section extends Taggable {
   title: string;
   description?: string;
-  tags?: string[];
-  dependencies?: string[];
   questions: Question[];
 }
