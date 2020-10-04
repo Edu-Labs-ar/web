@@ -12,11 +12,13 @@ export class FormsService {
     description: 'Oh si, la descripción funciona, perfecto',
     sections: [
       {
+        id: 1,
         title: 'Titulo original',
         description: 'Si, la sección también lleva descripción',
         tags: ['primera'],
         questions: [
           {
+            id: 1,
             title: 'Nombre',
             description: 'Creo que sabes qué va ahí',
             required: true,
@@ -24,6 +26,7 @@ export class FormsService {
             tags: ['nombre']
           },
           {
+            id: 2,
             title: 'Apellido',
             required: false,
             type: 'short text',
@@ -32,17 +35,20 @@ export class FormsService {
         ]
       },
       {
+        id: 2,
         title: 'Una segunda seccion',
         tags: ['segunda'],
         dependencies: ['primera'],
         questions: [
           {
+            id: 3,
             title: 'Edad',
             required: false,
             type: 'numeric',
             data: { min: 10, max: 100 }
           },
           {
+            id: 4,
             title: 'Año de cursado',
             required: false,
             type: 'slide',

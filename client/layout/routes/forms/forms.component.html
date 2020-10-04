@@ -9,12 +9,24 @@
     <div class="mat-warn mt-3">* Obligatorio</div>
   </edu-panel>
 
-  <edu-section *ngFor="let section of structure.sections; let idx = index" key="{{idx}}">
-    <edu-title> {{section.title}} </edu-title>
-    <edu-description *ngIf="section.description"> {{section.description}} </edu-description>
-    <ng-template>
-
-    </ng-template>
-  </edu-section>
+  <form [formGroup]="form">
+    <edu-section *ngFor="let section of structure.sections; let idx = index" key="{{idx}}">
+      <edu-title> {{section.title}} </edu-title>
+      <edu-description *ngIf="section.description"> {{section.description}} </edu-description>
+      <ng-template>
+        <div *ngFor="let question of section.questions" [ngSwitch]="question.type">
+          <edu-question *ngSwitchCase="'numeric'" [title]="question.title" [description]="question.description"
+            [required]="question.required">
+            <mat-form-field class="mat-accent">
+              <input matInput type="number" [formControlName]="question.id" [attr.min]="getNumberData(question)?.min"
+                [attr.max]="getNumberData(question)?.max" [attr.step]="getNumberData(question)?.step"
+                placeholder="Ingrese su edad">
+            </mat-form-field>
+          </edu-question>
+          <div *ngSwitchDefault>SIN IMPLEMENTAR</div>
+        </div>
+      </ng-template>
+    </edu-section>
+  </form>
 
 </div>

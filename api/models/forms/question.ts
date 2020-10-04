@@ -19,8 +19,9 @@ export interface MultipleChoiceData extends Selection {
 }
 
 export interface NumberData {
-  min: number;
-  max: number;
+  min?: number;
+  max?: number;
+  step?: number;
 }
 
 export interface ButtonsData extends Selection {

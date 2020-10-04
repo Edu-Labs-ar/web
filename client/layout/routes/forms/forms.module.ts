@@ -4,7 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsComponent } from './forms.component';
 import { PanelModule, TitleModule } from 'client/layout/custom';
 import { FormsService } from 'client/services';
-import { SectionModule } from './custom';
+import { QuestionModule, SectionModule } from './custom';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: FormsComponent },
@@ -14,10 +16,13 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
     PanelModule,
     TitleModule,
+    QuestionModule,
     SectionModule,
-    RouterModule.forChild(routes)
+    MatInputModule
   ],
   providers: [ FormsService ],
   declarations: [FormsComponent]
