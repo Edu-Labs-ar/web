@@ -8,7 +8,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { RouterModule, Routes } from '@angular/router';
 import { PanelModule, TitleModule } from 'client/layout/custom';
-import { QuestionModule, SectionModule } from '../../custom';
+import { QuestionPanelModule, SectionModule } from '../../custom';
 import { FormInicialComponent } from './inicial.component';
 import { MatButtonModule } from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -29,7 +29,7 @@ const routes: Routes = [
     PanelModule,
     TitleModule,
     SectionModule,
-    QuestionModule,
+    QuestionPanelModule,
 
     MatInputModule,
     MatAutocompleteModule,

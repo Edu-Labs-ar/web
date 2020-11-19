@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, QueryList, TemplateRef, ViewChildren, DoCheck, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, TemplateRef, ViewChildren, DoCheck } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { merge, Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';

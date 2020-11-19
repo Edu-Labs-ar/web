@@ -4,8 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsComponent } from './forms.component';
 import { PanelModule, TitleModule } from 'client/layout/custom';
 import { FormsService } from 'client/services';
-import { QuestionModule, SectionModule } from './custom';
-import { MatInputModule } from '@angular/material/input';
+import { QuestionPanelModule, QuestionWrapperModule, SectionModule } from './custom';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -23,12 +22,12 @@ const routes: Routes = [
     PanelModule,
     TitleModule,
     SectionModule,
-    QuestionModule,
+    QuestionPanelModule,
+    QuestionWrapperModule,
 
-    MatInputModule,
-    MatButtonModule
+    MatButtonModule,
   ],
-  providers: [ FormsService ],
+  providers: [FormsService],
   declarations: [FormsComponent]
 })
 export class FormsModule { }

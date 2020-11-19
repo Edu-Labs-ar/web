@@ -9,10 +9,10 @@
 </ng-template>
 
 <ng-template #questionRef>
-  <div class="edu-vertical" [ngClass]="{'mb-3': description || !horizontal}">
-    <div class="d-flex-inline">
-      <edu-title class="edu-small">{{title}}</edu-title>
-      <span *ngIf="required" class="ml-1 mat-warn">*</span>
+  <div class="edu-vertical" [ngClass]="{'mb-3': description || (title && !horizontal)}">
+    <div *ngIf="title || question?.required" class="d-flex-inline">
+      <edu-title *ngIf="title" class="edu-small">{{title}}</edu-title>
+      <span *ngIf="question?.required" class="ml-1 mat-warn">*</span>
     </div>
     <edu-description *ngIf="description" class="mt-1 edu-small">{{description}}</edu-description>
   </div>

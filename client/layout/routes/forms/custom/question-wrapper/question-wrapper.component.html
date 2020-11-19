@@ -1,0 +1,145 @@
+<ng-container *ngIf="heading">
+  <edu-title *ngIf="vertical; else inlineHeading">
+    {{ heading }}
+  </edu-title>
+  <ng-template #inlineHeading>
+    <div class="my-auto" style="min-width: 10em;">
+      {{ heading }}
+    </div>
+  </ng-template>
+</ng-container>
+
+<div class="d-flex flex-column" [ngSwitch]="question.type">
+  <ng-container *ngSwitchCase="'long text'">
+    <mat-form-field>
+      <textarea matInput [formControl]="control"
+        [attr.minLength]="textData?.minLength"
+        [attr.maxLength]="textData?.maxLength"
+        [attr.placeholder]="textData?.placeholder"></textarea>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'short text'">
+    <mat-form-field>
+      <input matInput [formControl]="control"
+        [attr.minLength]="textData?.minLength"
+        [attr.maxLength]="textData?.maxLength"
+        [placeholder]="textData?.placeholder">
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'numeric'" horizontal>
+    <mat-form-field class="mat-accent">
+      <input matInput type="number" [formControl]="control"
+        [attr.min]="numberData?.min"
+        [attr.max]="numberData?.max"
+        [attr.step]="numberData?.step"
+        [attr.placeholder]="numberData?.placeholder">
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'options'">
+    <div *ngIf="extraData; else optionsBasic" [formGroup]="control">
+      <mat-radio-group class="edu-vertical" formControlName="value">
+        <mat-radio-button class="mt-2"
+          *ngFor="let option of optionsData?.options; let idx = index"
+          [value]="idx">
+            {{option}}
+        </mat-radio-button>
+        <mat-radio-button
+          [value]="optionsData?.options?.length || -1">
+          <ng-container *ngIf="hasExtraHeading()">
+            {{ getExtraHeading('Otra') }}
+          </ng-container>
+          <mat-form-field class="mat-accent">
+            <input matInput type="text" formControlName="extra"
+              [attr.minLength]="extraDataFull?.minLength"
+              [attr.maxLength]="extraDataFull?.maxLength"
+              [placeholder]="extraDataFull?.placeholder"
+              (keydown)="control.get('value')
+                .setValue(optionsData?.options?.length || -1)">
+          </mat-form-field>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <ng-template #optionsBasic>
+      <mat-radio-group class="edu-vertical"
+      [formControl]="control">
+        <mat-radio-button class="mt-2"
+          *ngFor="let option of optionsData?.options; let idx = index"
+          [value]="idx">
+            {{option}}
+       </mat-radio-button>
+      </mat-radio-group>
+    </ng-template>
+  </ng-container>
+  
+  <ng-container *ngSwitchCase="'multiple choice'">
+    <div *ngIf="extraData; else mChoiceBasic" [formGroup]="control">
+      <mat-selection-list formControlName="value">
+        <mat-list-option class="mt-2" checkboxPosition='before'
+          *ngFor="let option of optionsData?.options; let idx = index"
+          [value]="idx">
+            {{option}}
+        </mat-list-option>
+        <mat-list-option checkboxPosition='before'>
+            <ng-container *ngIf="hasExtraHeading()">
+              {{ getExtraHeading('Otros') }}
+            </ng-container>
+          <mat-form-field class="mat-accent">
+            <input matInput type="text" formControlName="extra"
+              [attr.minLength]="extraDataFull?.minLength"
+              [attr.maxLength]="extraDataFull?.maxLength"
+              [placeholder]="extraDataFull?.placeholder">
+          </mat-form-field>
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+    
+    <ng-template #mChoiceBasic>
+      <mat-selection-list [formControl]="control">
+        <mat-list-option class="mt-2" checkboxPosition='before'
+          *ngFor="let option of optionsData?.options; let idx = index"
+          [value]="idx">
+            {{option}}
+        </mat-list-option>
+      </mat-selection-list>
+    </ng-template>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'buttons'">
+    <mat-button-toggle-group [formControl]="control" [vertical]="vertical">
+      <mat-button-toggle
+        *ngFor="let option of buttonsData?.options; let idx = index"
+        [value]="idx">
+          {{option}}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'slider'">
+      <ng-template let-data
+        [ngTemplateOutletContext]="{ $implicit: sliderData }"
+        [ngTemplateOutlet]="sliderSelfie" #sliderSelfie>
+      <div class="d-flex align-items-center mx-2">
+        <ng-template [ngIf]="data?.sideLabels">
+          {{ sliderFormat(data)(data?.min || 0) }}
+        </ng-template>
+        <mat-slider class="flex-grow-1 mx-2"
+          [formControl]="control"
+          [thumbLabel]="data?.tooltip || false"
+          [tickInterval]="data?.step || 1"
+          [min]="data?.min || 0"
+          [max]="data?.max || 100"
+          [step]="data?.step || 1"
+          [value]="data?.defaultValue || 0"
+          [displayWith]="sliderFormat(data)">
+        </mat-slider>
+        <ng-template [ngIf]="data?.sideLabels">
+          {{ sliderFormat(data)(data?.max || 100) }}
+        </ng-template>
+      </div>
+    </ng-template>
+  </ng-container>
+  <div *ngSwitchDefault>SIN IMPLEMENTAR</div>
+</div>

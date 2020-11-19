@@ -1,4 +1,4 @@
-<div class="edu-vertical">
+<!-- <div class="edu-vertical">
   <edu-panel stripe>
     <edu-title class="mt-3">Encuesta a estudiantes FBCB</edu-title>
     <div class="mt-3" *ngIf="sectionIdx === 0">
@@ -21,34 +21,34 @@
     <div class="mat-warn mt-3">* Obligatorio</div>
   </edu-panel>
 
-  <form [formGroup]="inicialForm">
+  <form [formGroup]="inicialForm"> -->
 
     <!-- DATOS INICIALES -->
-    <edu-section key="inicial">
+    <!-- <edu-section key="inicial">
       <ng-template>
-        <edu-question title="¿Sos estudiante de la FBCB?" required>
+        <edu-question-panel title="¿Sos estudiante de la FBCB?" required>
           <mat-radio-group class="edu-vertical" formControlName="estudiaFBCB">
             <mat-radio-button class="mt-2" value="0">Sí</mat-radio-button>
             <mat-radio-button class="mt-2" value="1">No</mat-radio-button>
           </mat-radio-group>
-        </edu-question>
+        </edu-question-panel>
       </ng-template>
-    </edu-section>
+    </edu-section> -->
 
     <!-- DATOS DEMOGRAFICOS -->
-    <edu-section key="demograficos">
+    <!-- <edu-section key="demograficos">
       <edu-title>Datos Demográficos</edu-title>
 
       <ng-template>
         <div formGroupName="demograficos">
-          <edu-question title="Edad">
+          <edu-question-panel title="Edad">
             <mat-form-field class="mat-accent">
               <input matInput type="number" formControlName="edad" min="1" max="99" step="1"
                 placeholder="Ingrese su edad">
             </mat-form-field>
-          </edu-question>
+          </edu-question-panel>
 
-          <edu-question title="Género">
+          <edu-question-panel title="Género">
             <mat-radio-group class="edu-vertical" formControlName="genero">
               <mat-radio-button class="mt-2" value="0">Hombre</mat-radio-button>
               <mat-radio-button class="mt-2" value="1">Mujer</mat-radio-button>
@@ -61,17 +61,17 @@
                 </mat-form-field>
               </mat-radio-button>
             </mat-radio-group>
-          </edu-question>
+          </edu-question-panel>
         </div>
       </ng-template>
-    </edu-section>
+    </edu-section> -->
 
     <!-- DATOS ACADEMICOS -->
-    <edu-section key="academicos">
+    <!-- <edu-section key="academicos">
       <edu-title>Datos Académicos</edu-title>
       <ng-template>
         <div formGroupName="academicos">
-          <edu-question title="¿Qué carrera estás cursando?" required>
+          <edu-question-panel title="¿Qué carrera estás cursando?" required>
             <mat-radio-group class="edu-vertical" formControlName="carrera">
               <mat-radio-button class="mt-2" value="0">Licenciatura en Biotecnología</mat-radio-button>
               <mat-radio-button class="mt-2" value="1">Bioquímica</mat-radio-button>
@@ -84,13 +84,13 @@
                 </mat-form-field>
               </mat-radio-button>
             </mat-radio-group>
-          </edu-question>
+          </edu-question-panel>
 
-          <edu-question title="¿Qué año estás cursando?" required>
+          <edu-question-panel title="¿Qué año estás cursando?" required>
             <mat-slider min="0" max="5" step="1" tickInterval="1" thumbLabel formControlName="año"></mat-slider>
-          </edu-question>
+          </edu-question-panel>
 
-          <edu-question title="¿Cursaste alguna de estas materias de manera PRESENCIAL?"
+          <edu-question-panel title="¿Cursaste alguna de estas materias de manera PRESENCIAL?"
             *ngIf="lastAssignatures?.length > 0">
             <mat-selection-list formControlName="presenciales">
               <mat-list-option *ngFor="let assignature of lastAssignatures; let i = index" value="{{i}}"
@@ -98,17 +98,17 @@
                 {{assignature.name}}
               </mat-list-option>
             </mat-selection-list>
-          </edu-question>
+          </edu-question-panel>
         </div>
       </ng-template>
-    </edu-section>
+    </edu-section> -->
 
     <!-- CURSADO PRESENCIAL -->
-    <edu-section *ngFor="let assignature of interestingAssignatures | async" key="{{'p-'.concat(assignature.name)}}">
+    <!-- <edu-section *ngFor="let assignature of interestingAssignatures | async" key="{{'p-'.concat(assignature.name)}}">
       <edu-title>{{assignature.name}}</edu-title>
 
       <ng-template>
-        <edu-question title="¿Tuvo la materia complementos audiovisuales para facilitar los contenidos?"
+        <edu-question-panel title="¿Tuvo la materia complementos audiovisuales para facilitar los contenidos?"
           description="Por fuera de los típicos apuntes y presentaciones">
           <mat-selection-list>
             <mat-list-option *ngFor="let option of [
@@ -126,48 +126,48 @@
               </mat-form-field>
             </mat-list-option>
           </mat-selection-list>
-        </edu-question>
+        </edu-question-panel>
 
-        <edu-question title="Antes de cada trabajo práctico, ¿Lograste comprender la técnica correctamente?">
+        <edu-question-panel title="Antes de cada trabajo práctico, ¿Lograste comprender la técnica correctamente?">
           <mat-slider thumbLabel tickInterval="1" min="0" max="4" step="1" value="2" [displayWith]="relativeFormat">
           </mat-slider>
-        </edu-question>
+        </edu-question-panel>
 
-        <edu-question title="Luego de cada trabajo práctico, ¿Lograste comprender la técnica correctamente?">
+        <edu-question-panel title="Luego de cada trabajo práctico, ¿Lograste comprender la técnica correctamente?">
           <mat-slider thumbLabel tickInterval="1" min="0" max="4" step="1" value="2" [displayWith]="relativeFormat">
           </mat-slider>
-        </edu-question>
+        </edu-question-panel>
 
         <edu-question
           title="En que grado creés que la realización del trabajo práctico te preparó para realizar las técnicas dictadas, en la vida profesional.">
           <mat-slider thumbLabel tickInterval="1" min="0" max="4" step="1" value="2" [displayWith]="relativeFormat">
           </mat-slider>
-        </edu-question>
+        </edu-question-panel>
       </ng-template>
-    </edu-section>
+    </edu-section> -->
 
     <!-- DATOS ACADEMICOS -->
-    <edu-section key="virtual" *ngIf="virtualAssignatures?.length > 0">
+    <!-- <edu-section key="virtual" *ngIf="virtualAssignatures?.length > 0">
       <edu-title>Cursado Virtual</edu-title>
       <ng-template>
         <div formGroupName="academicos">
-          <edu-question title="¿Cursaste alguna de estas materias de manera VIRTUAL?">
+          <edu-question-panel title="¿Cursaste alguna de estas materias de manera VIRTUAL?">
             <mat-selection-list formControlName="virtuales">
               <mat-list-option *ngFor="let assignature of virtualAssignatures; let i = index" value="{{i}}"
                 checkboxPosition='before'>
                 {{assignature.name}}
               </mat-list-option>
             </mat-selection-list>
-          </edu-question>
+          </edu-question-panel>
         </div>
       </ng-template>
-    </edu-section>
+    </edu-section> -->
 
     <!-- CURSADO VIRTUAL -->
-    <edu-section key="virtual2" *ngIf="virtualAssignatures?.length > 0">
+    <!-- <edu-section key="virtual2" *ngIf="virtualAssignatures?.length > 0">
       <edu-title>Cursado Virtual</edu-title>
       <ng-template>
-        <edu-question title="¿Tuviste los medios para cursarlas?">
+        <edu-question-panel title="¿Tuviste los medios para cursarlas?">
           <div>
             Computadora
             <mat-button-toggle-group>
@@ -200,26 +200,26 @@
               <mat-button-toggle value="3">Óptimo</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
-        </edu-question>
+        </edu-question-panel>
 
-        <edu-question title="¿Cómo calificarías el desarrollo de los contenidos dictados de manera virtual?">
+        <edu-question-panel title="¿Cómo calificarías el desarrollo de los contenidos dictados de manera virtual?">
           <mat-slider thumbLabel tickInterval="1" min="0" max="4" step="1" value="2" [displayWith]="qualitativeFormat">
           </mat-slider>
-        </edu-question>
+        </edu-question-panel>
 
-        <edu-question title="¿En qué grado se adaptaron las materias a la modalidad virtual?">
+        <edu-question-panel title="¿En qué grado se adaptaron las materias a la modalidad virtual?">
           <mat-slider thumbLabel tickInterval="1" min="0" max="4" step="1" value="2" [displayWith]="qualitativeFormat">
           </mat-slider>
-        </edu-question>
+        </edu-question-panel>
 
         <edu-question
           title="¿Alguna de las materias que cursaste adaptó sus trabajos prácticos a la virtualidad? ¿Cómo?">
           <mat-form-field class="mat-accent">
             <textarea matInput placeholder="Tu respuesta"></textarea>
           </mat-form-field>
-        </edu-question>
+        </edu-question-panel>
 
-        <edu-question title="La instancia virtual ¿Fué suficiente para alcanzar la regularidad?">
+        <edu-question-panel title="La instancia virtual ¿Fué suficiente para alcanzar la regularidad?">
           <mat-radio-group class="edu-vertical">
             <mat-radio-button class="mt-2" value="0">Sí</mat-radio-button>
             <mat-radio-button class="mt-2" value="1">No</mat-radio-button>
@@ -231,87 +231,87 @@
               <input matInput type="text" maxlength="60">
             </mat-form-field>
           </div>
-        </edu-question>
+        </edu-question-panel>
 
         <edu-question
           title="¿En qué grado considerás que comprendiste las técnicas de laboratorio con las metodologías utilizadas?">
           <mat-slider thumbLabel tickInterval="1" min="0" max="4" step="1" value="2" [displayWith]="qualitativeFormat">
           </mat-slider>
-        </edu-question>
+        </edu-question-panel>
       </ng-template>
-    </edu-section>
+    </edu-section> -->
 
     <!-- CONSIDERACIONES FINALES -->
-    <edu-section key="consideraciones">
+    <!-- <edu-section key="consideraciones">
       <edu-title>Consideraciones Finales</edu-title>
       <ng-template>
-        <edu-question title="¿En qué grado considerás que te adaptaste a la virtualidad?"
+        <edu-question-panel title="¿En qué grado considerás que te adaptaste a la virtualidad?"
           description="Pensa en cosas como tu manejo con los programas utilizados o métodos y herramientas utilizados para comunicarte con tus compañeros">
           <mat-slider thumbLabel tickInterval="1" min="0" max="4" step="1" value="2" [displayWith]="qualitativeFormat">
           </mat-slider>
-        </edu-question>
+        </edu-question-panel>
 
         <edu-question
           title="¿En qué grado considerás que la carrera te brinda herramientas que vayas a utilizar en el mundo profesional?">
           <mat-slider thumbLabel tickInterval="1" min="0" max="4" step="1" value="2" [displayWith]="qualitativeFormat">
           </mat-slider>
-        </edu-question>
+        </edu-question-panel>
 
         <edu-question
           title="¿Considerás que en la carrera se desarrollan temas que no tienen aplicación, directa o indirecta, en el mundo profesional? ¿Cuáles?">
           <mat-form-field class="mat-accent">
             <textarea matInput placeholder="Tu respuesta"></textarea>
           </mat-form-field>
-        </edu-question>
+        </edu-question-panel>
 
-        <edu-question title="¿Tuviste algún acercamiento a la práctica profesional?"
+        <edu-question-panel title="¿Tuviste algún acercamiento a la práctica profesional?"
           description="Pasantías, tesinas, etc">
           <mat-radio-group class="edu-vertical">
             <mat-radio-button class="mt-2" value="0">Sí</mat-radio-button>
             <mat-radio-button class="mt-2" value="1">No</mat-radio-button>
           </mat-radio-group>
-        </edu-question>
+        </edu-question-panel>
 
         <edu-question
           title="¿Considerás que la incorporación de herramientas virtuales mejoraría el dictado de clases presenciales?">
           <mat-slider thumbLabel tickInterval="1" min="0" max="4" step="1" value="2" [displayWith]="relativeFormat">
           </mat-slider>
-        </edu-question>
+        </edu-question-panel>
       </ng-template>
-    </edu-section>
+    </edu-section> -->
 
     <!-- VIDEOJUEGOS -->
-    <edu-section key="videojuegos">
+    <!-- <edu-section key="videojuegos">
       <edu-title>Videojuegos</edu-title>
       <ng-template>
-        <edu-question title="Nombre al primer videojuego que se le venga a la cabeza">
+        <edu-question-panel title="Nombre al primer videojuego que se le venga a la cabeza">
           <mat-form-field class="mat-accent">
             <input matInput type="text" maxlength="60">
           </mat-form-field>
-        </edu-question>
+        </edu-question-panel>
 
-        <edu-question title="¿Jugás videojuegos?">
+        <edu-question-panel title="¿Jugás videojuegos?">
           <mat-radio-group class="edu-vertical">
             <mat-radio-button class="mt-2" value="0">Sí</mat-radio-button>
             <mat-radio-button class="mt-2" value="1">No</mat-radio-button>
           </mat-radio-group>
-        </edu-question>
+        </edu-question-panel>
 
-        <edu-question title="¿Usarías un videojuego como herramienta de aprendizaje?">
+        <edu-question-panel title="¿Usarías un videojuego como herramienta de aprendizaje?">
           <mat-radio-group class="edu-vertical">
             <mat-radio-button class="mt-2" value="0">Sí</mat-radio-button>
             <mat-radio-button class="mt-2" value="1">No</mat-radio-button>
           </mat-radio-group>
-        </edu-question>
+        </edu-question-panel>
 
-        <edu-question title="¿Usarías un simulador como herramienta de aprendizaje?">
+        <edu-question-panel title="¿Usarías un simulador como herramienta de aprendizaje?">
           <mat-radio-group class="edu-vertical">
             <mat-radio-button class="mt-2" value="0">Sí</mat-radio-button>
             <mat-radio-button class="mt-2" value="1">No</mat-radio-button>
           </mat-radio-group>
-        </edu-question>
+        </edu-question-panel>
 
-        <edu-question title="De 3 características de los videojuegos">
+        <edu-question-panel title="De 3 características de los videojuegos">
           <mat-form-field class="mat-accent">
             <input matInput type="text" maxlength="45">
           </mat-form-field>
@@ -321,7 +321,7 @@
           <mat-form-field class="mat-accent">
             <input matInput type="text" maxlength="45">
           </mat-form-field>
-        </edu-question>
+        </edu-question-panel>
       </ng-template>
     </edu-section>
 
@@ -345,4 +345,4 @@
     </div>
 
   </form>
-</div>
+</div> -->

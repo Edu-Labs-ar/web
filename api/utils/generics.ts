@@ -2,7 +2,7 @@ export interface Distinguishable {
   id: number;
 }
 
-export interface Taggable extends Distinguishable {
+export interface Taggable {
   tags?: string[];
   dependencies?: string[];
 }
