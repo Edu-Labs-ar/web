@@ -1,4 +1,4 @@
-import { Distinguishable, Taggable } from 'api/utils';
+import { Distinguishable, EntitledElement, Taggable } from 'api/utils';
 import { ButtonsData, TextData, NumberData, OptionsData, SliderData } from './question-data';
 
 export interface IQuestion
@@ -8,11 +8,6 @@ export interface IQuestion
 
 export interface InlinedQuestion {
   inline?: boolean;
-}
-
-export interface TitledQuestionBase {
-  title: string;
-  description?: string;
 }
 
 export interface HeadedQuestionBase {
@@ -60,6 +55,6 @@ export type QuestionData = TextData | NumberData | OptionsData | ButtonsData | S
 
 export type BaseQuestion = QuestionShortText | QuestionLongText | QuestionNumber | QuestionOptions | QuestionButtons | QuestionSlider;
 
-export type MultiQuestion = UntitledMultiQuestion | (UntitledMultiQuestion & TitledQuestionBase);
+export type MultiQuestion = UntitledMultiQuestion | (UntitledMultiQuestion & EntitledElement);
 
-export type Question = BaseQuestion | (BaseQuestion & TitledQuestionBase);
+export type Question = BaseQuestion | (BaseQuestion & EntitledElement);

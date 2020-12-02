@@ -1,4 +1,4 @@
-import { FirstSection, Section } from './section';
+import { DependentSection, FirstSection, Section } from './section';
 import { Distinguishable } from '../../utils';
 
 export interface FormStructure extends Distinguishable {

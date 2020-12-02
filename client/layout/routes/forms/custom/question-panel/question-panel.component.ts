@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { InlinedQuestion, Question, TitledQuestionBase } from 'api';
+import { InlinedQuestion, Question, EntitledElement } from 'api';
 
 @Component({
   selector: 'edu-question-panel[question]',
@@ -19,11 +19,11 @@ export class QuestionPanelComponent {
   @Input() question: Question;
 
   get title(): string {
-    return (this.question as TitledQuestionBase)?.title;
+    return (this.question as EntitledElement)?.title;
   }
 
   get description(): string {
-    return (this.question as TitledQuestionBase)?.description;
+    return (this.question as EntitledElement)?.description;
   }
 
   get horizontal(): boolean {

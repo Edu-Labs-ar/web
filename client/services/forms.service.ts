@@ -85,6 +85,7 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
             title: '¿Cursaste alguna de estas materias de manera PRESENCIAL?',
             required: true,
             type: 'multiple choice',
+            tags: ['presenciales'],
             dependencies: ['carrera', 'año'],
             dependentData: {
               '0|4': {
@@ -154,16 +155,16 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
             type: 'multiple choice',
             dependencies: ['carrera', 'año'],
             dependentData: {
-              '1,4': {
+              '1|4': {
                 options: ['Inmunología Básica', 'Fisiología Humana', 'Bromatología', 'Nutrición', 'Metodología de la Investigación']
               },
-              '1,5': {
+              '1|5': {
                 options: ['Bioquímica Clínica y Cuantitativa II', 'Bioquímica Clínica y Cuantitativa III']
               },
-              '2,4': {
+              '2|4': {
                 options: ['Inmunología Básica', 'Operaciones y Procesos Biotecnológicos I']
               },
-              '2,5': {
+              '2|5': {
                 options: ['Tratamiento de Efluentes', 'Ingeniería Genética', 'Ingeniería y Diseño Enzimático', 'Tecnología Inmunológica']
               }
             }
