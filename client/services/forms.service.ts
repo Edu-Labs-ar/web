@@ -24,7 +24,7 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
             title: '¿Sos estudiante de la FBCB?',
             required: true,
             type: 'options',
-            data: {
+            settings: {
               options: ['Si', 'No']
             }
           }
@@ -35,19 +35,19 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
         title: 'Datos Generales',
         questions: [
           {
-            id: 2,
+            id: 1,
             inline: true,
             title: 'Edad',
             required: true,
             type: 'numeric',
-            data: { min: 1, max: 100 }
+            settings: { min: 1, max: 100 }
           },
           {
-            id: 3,
+            id: 2,
             title: 'Género',
             required: true,
             type: 'options',
-            data: {
+            settings: {
               options: ['Mujer', 'Hombre', 'Prefiero no decirlo'],
               others: {
                 title: '',
@@ -62,32 +62,32 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
         title: 'Datos Académicos',
         questions: [
           {
-            id: 4,
+            id: 1,
             title: '¿Qué carrera estás cursando?',
             tags: ['carrera'],
             required: true,
             type: 'options',
-            data: {
+            settings: {
               options: ['Licenciatura en Biotecnología', 'Bioquímica', 'Licenciatura en Nutrición'],
               others: true
             }
           },
           {
-            id: 5,
+            id: 2,
             title: '¿Qué año estás cursando?',
             tags: ['año'],
             required: true,
             type: 'slider',
-            data: { min: 1, max: 5, tooltip: true }
+            settings: { min: 1, max: 5, tooltip: true }
           },
           {
-            id: 6,
+            id: 3,
             title: '¿Cursaste alguna de estas materias de manera PRESENCIAL?',
             required: true,
             type: 'multiple choice',
             tags: ['presenciales'],
             dependencies: ['carrera', 'año'],
-            dependentData: {
+            dependentSettings: {
               '0|4': {
                 options: ['Química Biológica', 'Microbiología General', 'Métodos Matemáticos']
               },
@@ -107,13 +107,20 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
       {
         id: 4,
         title: 'Cursado',
+        dependencies: ['presenciales'],
+        dependentSettings: {
+          '?#presenciales': {
+            title: '#presenciales',
+            description: 'Pruebo agregarle una descripcion a #presenciales.'
+          }
+        },
         questions: [
           {
-            id: 7,
+            id: 1,
             title: '¿Tuvo la materia complementos audiovisuales para facilitar los contenidos?',
             description: 'Por fuera de los típicos apuntes y presentaciones',
             type: 'multiple choice',
-            data: {
+            settings: {
               options: [
                 'Videos / Animaciones',
                 'Realidad Aumentada',
@@ -125,22 +132,22 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
             }
           },
           {
-            id: 8,
+            id: 2,
             title: 'Antes de cada trabajo práctico, ¿Lograste comprender la técnica correctamente?',
             type: 'slider',
-            data: { min: 0, max: 4, tagType: 'relative', sideLabels: true }
+            settings: { min: 0, max: 4, tagType: 'relative', sideLabels: true }
           },
           {
-            id: 9,
+            id: 3,
             title: 'Luego de cada trabajo práctico, ¿Lograste comprender la técnica correctamente?',
             type: 'slider',
-            data: { min: 0, max: 4, tagType: 'relative', sideLabels: true }
+            settings: { min: 0, max: 4, tagType: 'relative', sideLabels: true }
           },
           {
-            id: 10,
+            id: 4,
             title: 'En que grado creés que la realización del trabajo práctico te preparó para realizar las técnicas dictadas, en la vida profesional.',
             type: 'slider',
-            data: { min: 0, max: 4, tagType: 'relative', sideLabels: true }
+            settings: { min: 0, max: 4, tagType: 'relative', sideLabels: true }
           },
         ]
       },
@@ -149,12 +156,12 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
         title: 'Cursado Virtual',
         questions: [
           {
-            id: 11,
+            id: 1,
             title: '¿Cursaste alguna de estas materias de manera VIRTUAL?',
             required: true,
             type: 'multiple choice',
             dependencies: ['carrera', 'año'],
-            dependentData: {
+            dependentSettings: {
               '1|4': {
                 options: ['Inmunología Básica', 'Fisiología Humana', 'Bromatología', 'Nutrición', 'Metodología de la Investigación']
               },
@@ -170,72 +177,71 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
             }
           },
           {
-            id: 12,
+            id: 2,
             title: '¿Tuviste los medios para cursarlas?',
-            type: 'multi question',
             fields: [
               {
                 id: 1,
                 inline: true,
                 heading: 'Computadora',
                 type: 'buttons',
-                data: { options: ['No dispone', 'Precario', 'Óptimo'] }
+                settings: { options: ['No dispone', 'Precario', 'Óptimo'] }
               },
               {
                 id: 2,
                 inline: true,
                 heading: 'Celular',
                 type: 'buttons',
-                data: { options: ['No dispone', 'Precario', 'Óptimo'] }
+                settings: { options: ['No dispone', 'Precario', 'Óptimo'] }
               },
               {
                 id: 3,
                 inline: true,
                 heading: 'Acceso a Internet',
                 type: 'buttons',
-                data: { options: ['No dispone', 'Precario', 'Óptimo'] }
+                settings: { options: ['No dispone', 'Precario', 'Óptimo'] }
               },
               {
                 id: 4,
                 inline: true,
                 heading: 'Espacio de Estudio',
                 type: 'buttons',
-                data: { options: ['No dispone', 'Precario', 'Óptimo'] }
+                settings: { options: ['No dispone', 'Precario', 'Óptimo'] }
               }
             ]
           },
           {
-            id: 13,
+            id: 3,
             title: '¿Cómo calificarías el desarrollo de los contenidos dictados de manera virtual?',
             type: 'slider',
-            data: { min: 0, max: 4, tagType: 'qualitative', sideLabels: true }
+            settings: { min: 0, max: 4, tagType: 'qualitative', sideLabels: true }
           },
           {
-            id: 14,
+            id: 4,
             title: '¿En qué grado se adaptaron las materias a la modalidad virtual?',
             type: 'slider',
-            data: { min: 0, max: 4, tagType: 'qualitative', sideLabels: true }
+            settings: { min: 0, max: 4, tagType: 'qualitative', sideLabels: true }
           },
           {
-            id: 15,
+            id: 5,
             title: '¿Alguna de las materias que cursaste adaptó sus trabajos prácticos a la virtualidad? ¿Cómo?',
             type: 'long text',
-            data: { placeholder: 'Tu Respuesta' }
+            settings: { placeholder: 'Tu Respuesta' }
           },
           {
-            id: 16,
+            id: 6,
             title: 'La instancia virtual ¿Fué suficiente para alcanzar la regularidad?',
             type: 'options',
-            data: {
+            settings: {
               options: ['Si', 'No'],
               others: { title: '', placeholder: 'Comentarios' }
             }
           },
           {
-            id: 17,
+            id: 7,
             title: '¿En qué grado considerás que comprendiste las técnicas de laboratorio con las metodologías utilizadas?',
             type: 'slider',
-            data: { min: 0, max: 4, tagType: 'qualitative', sideLabels: true }
+            settings: { min: 0, max: 4, tagType: 'qualitative', sideLabels: true }
           },
         ]
       },
@@ -244,36 +250,36 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
         title: 'Consideraciones Finales',
         questions: [
           {
-            id: 18,
+            id: 1,
             title: '¿En qué grado considerás que te adaptaste a la virtualidad?',
             description: 'Pensa en cosas como tu manejo con los programas utilizados o métodos y herramientas utilizados para comunicarte con tus compañeros',
             type: 'slider',
-            data: { min: 0, max: 4, tagType: 'qualitative', sideLabels: true }
+            settings: { min: 0, max: 4, tagType: 'qualitative', sideLabels: true }
           },
           {
-            id: 19,
+            id: 2,
             title: '¿En qué grado considerás que la carrera te brinda herramientas que vayas a utilizar en el mundo profesional?',
             type: 'slider',
-            data: { min: 0, max: 4, tagType: 'qualitative', sideLabels: true }
+            settings: { min: 0, max: 4, tagType: 'qualitative', sideLabels: true }
           },
           {
-            id: 20,
+            id: 3,
             title: '¿Considerás que en la carrera se desarrollan temas que no tienen aplicación, directa o indirecta, en el mundo profesional? ¿Cuáles?',
             type: 'long text',
-            data: { placeholder: 'Tu respuesta' }
+            settings: { placeholder: 'Tu respuesta' }
           },
           {
-            id: 21,
+            id: 4,
             title: '¿Tuviste algún acercamiento a la práctica profesional?',
             description: 'Pasantías, tesinas, etc',
             type: 'options',
-            data: { options: ['Si', 'No'] }
+            settings: { options: ['Si', 'No'] }
           },
           {
-            id: 22,
+            id: 5,
             title: '¿Considerás que la incorporación de herramientas virtuales mejoraría el dictado de clases presenciales?',
             type: 'slider',
-            data: { min: 0, max: 4, tagType: 'relative', sideLabels: true }
+            settings: { min: 0, max: 4, tagType: 'relative', sideLabels: true }
           },
         ]
       },
@@ -282,38 +288,37 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
         title: 'Videojuegos',
         questions: [
           {
-            id: 23,
+            id: 1,
             title: 'Nombre al primer videojuego que se le venga a la cabeza',
             type: 'short text',
-            data: { maxLength: 60 }
+            settings: { maxLength: 60 }
           },
           {
-            id: 24,
+            id: 2,
             title: '¿Jugás videojuegos?',
             type: 'options',
-            data: { options: ['Si', 'No'] }
+            settings: { options: ['Si', 'No'] }
           },
           {
-            id: 25,
+            id: 3,
             title: '¿Usarías un videojuego como herramienta de aprendizaje?',
             type: 'options',
-            data: { options: ['Si', 'No'] }
+            settings: { options: ['Si', 'No'] }
           },
           {
-            id: 26,
+            id: 4,
             title: '¿Usarías un simulador como herramienta de aprendizaje?',
             type: 'options',
-            data: { options: ['Si', 'No'] }
+            settings: { options: ['Si', 'No'] }
           },
           {
-            id: 27,
+            id: 5,
             title: 'De 3 características de los videojuegos',
-            type: 'multi question',
             fields: [
               {
                 id: 1,
                 type: 'short text',
-                data: {
+                settings: {
                   maxLength: 30,
                   placeholder: 'Caracteristica #1'
                 }
@@ -321,7 +326,7 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
               {
                 id: 2,
                 type: 'short text',
-                data: {
+                settings: {
                   maxLength: 30,
                   placeholder: 'Caracteristica #2'
                 }
@@ -329,7 +334,7 @@ Ante cualquier consulta, podés comunicarte a contacto@edulabs.com.ar',
               {
                 id: 3,
                 type: 'short text',
-                data: {
+                settings: {
                   maxLength: 30,
                   placeholder: 'Caracteristica #3'
                 }

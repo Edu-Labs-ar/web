@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { InlinedQuestion, Question, EntitledElement } from 'api';
+import { EntitledElement, InlinedQuestion, ProcesableQuestion } from 'api';
 
 @Component({
   selector: 'edu-question-panel[question]',
@@ -16,7 +16,7 @@ export class QuestionPanelComponent {
     return this._emplace;
   }
 
-  @Input() question: Question;
+  @Input() question: ProcesableQuestion;
 
   get title(): string {
     return (this.question as EntitledElement)?.title;

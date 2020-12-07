@@ -9,32 +9,23 @@
   </edu-panel>
 
   <form [formGroup]="form">
-    <ng-template ngFor let-section [ngForOf]="structure.sections" let-idx="index">
-      <edu-section *ngIf="shouldDisplaySection(section)" key="{{idx}}">
-        <ng-template [ngIf]="section.title">
-          <edu-title> {{section.title}} </edu-title>
-          <edu-description *ngIf="section.description"> {{section.description}} </edu-description>
-        </ng-template>
-        <ng-template #contentTemplate>
-          <ng-template ngFor let-question [ngForOf]="section.questions">
-            <edu-question-panel *ngIf="shouldDisplayQuestion(question)" [question]="question">
-              <edu-question-wrapper *ngIf="isSimpleQuestion(question); else mQuestionFields"
-                [question]="question" [questionData]="getQuestionData(question)"
-                [control]="getQuestionControl(question)">
-              </edu-question-wrapper>
-              <ng-template #mQuestionFields>
-                <ng-template ngFor let-field [ngForOf]="asMultiQuestion(question)?.fields">
-                  <edu-question-wrapper *ngIf="shouldDisplaySubQuestion(question, field)"
-                    [question]="field" [questionData]="getSubQuestionData(question, field)"
-                    [control]="getFieldControl(question, field)">
-                  </edu-question-wrapper>
-                </ng-template>
-              </ng-template>
-            </edu-question-panel>
+    <edu-section *ngFor="let sStatus of formState | keyvalue; let idx = index" key="{{idx}}">
+      <ng-template [ngIf]="sStatus.value.title">
+        <edu-title> {{sStatus.value.title}} </edu-title>
+        <edu-description *ngIf="sStatus.value.description"> {{sStatus.value.description}} </edu-description>
+      </ng-template>
+      <ng-template #contentTemplate>
+        <edu-question-panel *ngFor="let sQuestion of sStatus.value.questions | keyvalue" [question]="sQuestion.value">
+          <edu-question-wrapper *ngIf="sQuestion.value.isSimple; else mQuestionFields" [question]="sQuestion.value">
+          </edu-question-wrapper>
+
+          <ng-template #mQuestionFields>
+            <edu-question-wrapper *ngFor="let sField of sQuestion.value.fields | keyvalue" [question]="sField.value">
+            </edu-question-wrapper>
           </ng-template>
-        </ng-template>
-      </edu-section>
-    </ng-template>
+        </edu-question-panel>
+      </ng-template>
+    </edu-section>
 
 
     <ng-container [ngTemplateOutlet]="sectionTemplate"></ng-container>

@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
-  Question, ExtraData, ExtraInput, InlinedQuestion,
-  TextData, NumberData, OptionsData, ButtonsData, SliderData, QuestionData
+  ButtonsSettings, ExtraInput, ExtraSettings,
+  InlinedQuestion,
+  NumberSettings, OptionsSettings, ProcesableQuestion, SliderSettings, TextSettings
 } from 'api';
 
 @Component({
-  selector: 'edu-question-wrapper[question][questionData][control]',
+  selector: 'edu-question-wrapper[question]',
   templateUrl: 'question-wrapper.component.html',
   host: {
     class: 'd-flex',
@@ -15,46 +16,46 @@ import {
 })
 export class QuestionWrapperComponent {
 
-  @Input() question: Question;
-
-  @Input() questionData: QuestionData;
-
-  @Input() control: FormGroup;
+  @Input() question: ProcesableQuestion & { control: FormGroup };
 
 
   /**
    * Manejo de Datos
    */
+  get control(): FormGroup {
+    return this.question.control as FormGroup;
+  }
+
   get vertical(): boolean {
     return !(this.question as InlinedQuestion)?.inline;
   }
 
-  get textData(): TextData | undefined {
-    return this.questionData as TextData;
+  get textData(): TextSettings | undefined {
+    return this.question?.settings as TextSettings;
   }
 
-  get numberData(): NumberData | undefined {
-    return this.questionData as NumberData;
+  get numberData(): NumberSettings | undefined {
+    return this.question?.settings as NumberSettings;
   }
 
-  get optionsData(): OptionsData | undefined {
-    return this.questionData as OptionsData;
+  get optionsData(): OptionsSettings | undefined {
+    return this.question?.settings as OptionsSettings;
   }
 
-  get buttonsData(): ButtonsData | undefined {
-    return this.questionData as ButtonsData;
+  get buttonsData(): ButtonsSettings | undefined {
+    return this.question?.settings as ButtonsSettings;
   }
 
-  get sliderData(): SliderData | undefined {
-    return this.questionData as SliderData;
+  get sliderData(): SliderSettings | undefined {
+    return this.question?.settings as SliderSettings;
   }
 
-  get extraData(): ExtraData | undefined {
-    return (this.questionData as ExtraInput)?.others;
+  get extraData(): ExtraSettings | undefined {
+    return (this.question?.settings as ExtraInput)?.others;
   }
 
-  get extraDataFull(): (TextData & { title?: string }) | undefined {
-    return (this.questionData as { others?: (TextData & { title?: string }) })?.others;
+  get extraDataFull(): (TextSettings & { title?: string }) | undefined {
+    return (this.question?.settings as { others?: (TextSettings & { title?: string }) })?.others;
   }
 
   hasExtraHeading(): boolean {
@@ -69,7 +70,7 @@ export class QuestionWrapperComponent {
     return (this.question as { heading?: string })?.heading;
   }
 
-  sliderFormat(data: SliderData): (_: number) => string {
+  sliderFormat(data: SliderSettings): (_: number) => string {
     let tags: string[];
     if ('tagType' in data)
       switch (data.tagType) {
@@ -89,6 +90,6 @@ export class QuestionWrapperComponent {
     if (tags.length === 0)
       return (_) => _.toString();
     else
-      return (value: number) => tags[Math.round(value * factor)];
+      return (value: number) => tags[Math.round((value - (data?.min ?? 0)) * factor)];
   }
 }

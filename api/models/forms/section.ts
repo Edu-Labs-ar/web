@@ -1,8 +1,8 @@
-import { Taggable, Distinguishable, EntitledElement } from 'api/utils';
-import { MultiQuestion, Question } from './question';
+import { Distinguishable, EntitledElement, Taggable } from 'api/utils';
+import { QuestionType } from './question';
 
 export interface SectionBase extends Taggable {
-  questions: (Question | MultiQuestion)[];
+  questions: QuestionType[];
 }
 
 export interface FirstSection extends SectionBase {
@@ -11,6 +11,10 @@ export interface FirstSection extends SectionBase {
 
 export type Section = SectionBase & Distinguishable & EntitledElement;
 
-export interface DependentSection extends Distinguishable {
-  dependentData: { [key: string]: EntitledElement };
+export interface DependentSection extends SectionBase, Distinguishable {
+  dependencies: string[];
+  dependentSettings: { [key: string]: EntitledElement };
 }
+
+export type SectionType = Section | (DependentSection & EntitledElement) | FirstSection;
+
